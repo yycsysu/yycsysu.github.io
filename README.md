@@ -1,77 +1,25 @@
-# sidebar
+# HPSTR Jekyll Theme
 
-Another theme for [Hexo]. Forked from the default theme light.
+They say three times the charm, so here is another free responsive Jekyll theme for you. I've learned a ton since open sourcing [my first two themes](https://mademistakes.com/work/jekyll-themes/), and wanted to try a few new things this time around. If you've used my previous themes most of this should be familiar territory.
 
-[demo](http://wuinm.com/hexo-theme-sidebar/)
+## What HPSTR brings to the table:
 
-## Install
+* Modern and minimal design.
+* Responsive templates for post, page, and post index `_layouts`. Looks great on mobile, tablet, and desktop devices.
+* Gracefully degrades in older browsers. Compatible with Internet Explorer 8+ and all modern browsers.  
+* Sweet animated menu with support for drop-downs.
+* Optional [Disqus](http://disqus.com) comments and social sharing links.
+* [Open Graph](https://developers.facebook.com/docs/opengraph/) and [Twitter Cards](https://dev.twitter.com/docs/cards) support for a better social sharing experience.
+* Simple [custom 404 page](http://mmistakes.github.io/hpstr-jekyll-theme/404.html) to get you started.
+* Stylesheets for Pygments and Coderay [syntax highlighting](http://mmistakes.github.io/hpstr-jekyll-theme/code-highlighting-post/) to make your code examples look snazzy
+* [Available in Spanish](https://github.com/cruznick/hpstr-jekyll-theme/tree/es). Thanks [@cruznick](https://github.com/cruznick)!
 
-Execute the following command and modify `theme` in `_config.yml` to `sidebar`.
+![HPSTR Theme Preview screenshot](http://mmistakes.github.io/hpstr-jekyll-theme/images/hpstr-jekyll-theme-preview.jpg)
 
-```
-git clone git://github.com/hardywu/hexo-theme-sidebar.git themes/sidebar
-```
+---
 
-## Update
+## Getting Started
 
-Execute the following command to update sidebar.
+HPSTR takes advantage of Sass and data files to make customizing easier. These features require Jekyll 2.x and will not work with older versions of Jekyll.
 
-```
-cd themes/sidebar
-git pull
-```
-
-## Config
-
-Default config:
-
-``` yaml
-menu:
-  Home: /
-  Archives: /archives
-
-widgets:
-- search
-- category
-- tag
-- twitter
-
-excerpt_link: Read More
-
-twitter:
-  username:
-  show_replies: false
-  tweet_count: 5
-
-addthis:
-  enable: true
-  pubid:
-  facebook: true
-  twitter: true
-  google: true
-  pinterest: true
-
-
-google_analytics:
-rss:
-```
-
-- **menu** - Main navigation menu
-- **widget** - Widgets displaying in sidebar
-- **excerpt_link** - "Read More" link text at the bottom of excerpted articles
-- **twitter** - Twitter widget config
-  - **username** - Twitter username
-  - **show_replies** - Enable displaying replies
-  - **tweet_count** - Tweets display in widget
-- **addthis** - Share buttons at the buttom of articles (Powered by [AddThis])
-  - **enable** - Enable share buttons
-  - **pubid** - Profile ID of [AddThis]
-  - **facebook** - Enable Facebook button
-  - **twitter** - Enable Twitter button
-  - **google** - Enable Google+ button
-  - **pinterest** - Enable Pinterest button
-- **fancybox** - Enable [Fancybox]
-- **google_analytics** - Google Analytics ID
-- **rss** - RSS subscription link (change if using Feedburner)
-
-## Features
+To learn how to install and use this theme check out the [Setup Guide](https://mmistakes.github.io/hpstr-jekyll-theme/theme-setup/) for more information.
