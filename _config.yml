@@ -1,5 +1,5 @@
-title:            About cC 
-description:      Victory loves preparation
+title:            cC's Blog 
+description:      Victory loves preparation. 
 disqus_shortname: hpstrtheme
 reading_time:     true
 words_per_minute: 200
@@ -11,7 +11,7 @@ url: //yycsysu.github.io
 owner:
   name:           Issac.yu
   avatar:         avatar.jpg
-  bio:            "Your bio goes here. It shouldn't be super long but a good two sentences or two should suffice."
+  bio:            "Victory loves preparation. "
   email:          yycsysu@gmail.com
   # Social networking links used in footer. Update and remove as you like.
   twitter:        
@@ -23,7 +23,7 @@ owner:
   flickr:         
   tumblr:         
   # google plus id, include the '+', eg +mmistakes
-  google_plus:    +yourid
+  google_plus:    
 
 # Background image to be tiled on all pages
 background: 
