@@ -1,25 +1,23 @@
 ---
 layout: post
-title: "Hello New World"
+title: "ç¾ä¸½æ–°ä¸–ç•Œ"
 modified:
 categories: 
 description:
-tags: []
+tags: [æ–°ä¸–ç•Œ]
 image:
-  feature:
-  credit:
-  creditlink:
+  background: triangular.png
 comments:
 share:
 date: 2015-08-06T03:20:28+00:00
 ---
 
-#ÕâÊÇÒ»¸ö±êÌâ
-##¾ÍÎÊÄãÃÇÅÂ²»ÅÂ
+#Ã•Ã¢ÃŠÃ‡Ã’Â»Â¸Ã¶Â±ÃªÃŒÃ¢
+##Â¾ÃÃÃŠÃ„Ã£ÃƒÃ‡Ã…Ã‚Â²Â»Ã…Ã‚
 
-×òÌìÍíÉÏÈıÁ¬Ê¤
-ºÇºÇ
+Ã—Ã²ÃŒÃ¬ÃÃ­Ã‰ÃÃˆÃ½ÃÂ¬ÃŠÂ¤
+ÂºÃ‡ÂºÃ‡
 
 yuyc
 
-²âÊÔ²âÊÔ
+Â²Ã¢ÃŠÃ”Â²Ã¢ÃŠÃ”
