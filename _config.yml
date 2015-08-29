@@ -53,14 +53,12 @@ paginate: 5
 
 kramdown:
   input: GFM
+  syntax_highlighter: rouge
   extensions:
-    - tables
-    - no_intra_emphasis
     - autolink
     - footnotes
     - smart
   use_coderay: false
-  syntax_highlighter: rouge
   coderay:
     coderay_line_numbers:  nil
 
