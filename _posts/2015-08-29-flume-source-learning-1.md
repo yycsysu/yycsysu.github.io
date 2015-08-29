@@ -10,58 +10,54 @@ image:
   creditlink: http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/
 ---
 
-## Flume Source Learning (1)- ReliableSpoolingFileEventReader
+## (1) ReliableSpoolingFileEventReader
 -----
 
-~~~ java
-/**
- * Flume自建注解，尚未理解含意
- */
-@Private
-@Evolving
 
-/**
- * 实现EventReader接口，EventReader是一个简单的接口。提供
- * readEvent(),readEvents(),close() 三个接口
- * 不实现可靠性。
- */
-public class SimpleTextLineEventReader implements EventReader {
-    private final BufferedReader reader;
+>下面代码块使用一个名为canary的文件。canary: 金丝雀。
+>金丝雀曾在矿井中被用于早期预警，这段代码的意义也在于此。
+>1. 创建一个canary文件： 检测创建功能。
+>2. 然后写。再读。Check是否读出内容： 检测读写功能。
+>3. 最后删除canary文件： 检测删除功能。
+>预先检测在Spooling directory内的所有操作能否成功。
 
-    public SimpleTextLineEventReader(Reader in) {
-        this.reader = new BufferedReader(in);
+``` java
+File trackerDirectory;
+try {
+    trackerDirectory = File.createTempFile("flume-spooldir-perm-check-", ".canary", spoolDirectory);
+    Files.write("testing flume file permissions\n", trackerDirectory, Charsets.UTF_8);
+    List lines = Files.readLines(trackerDirectory, Charsets.UTF_8);
+    Preconditions.checkState(!lines.isEmpty(), "Empty canary file %s", new Object[]{trackerDirectory});
+    if(!trackerDirectory.delete()) {
+        throw new IOException("Unable to delete canary file " + trackerDirectory);
     }
 
-    public Event readEvent() throws IOException {
-        String line = this.reader.readLine();
-        return line != null?EventBuilder.withBody(line, Charsets.UTF_8):null;
-    }
+    logger.debug("Successfully created and deleted canary file: {}", trackerDirectory);
+} catch (IOException var17) {
+    throw new FlumeException("Unable to read and modify files in the spooling directory: " + spoolDirectory, var17);
+}
+```
 
-    /**
-     * 亮点：
-     * 从events.size()判断是否加入n个event
-     * 同时判断event是不是为null确定文件流是否已到结尾
-     * 这里重用了前面写的readEvent()
-     */
-    public List<Event> readEvents(int n) throws IOException {
-        LinkedList events = Lists.newLinkedList();
+>这块代码位于上面那块之下。
+>trackerDirPath传自上一级的SpoolDirectorySource类。默认值为 ".flumespool"
+>File.isAbsolute() : 判断路径是否为绝对路径。因为下面使用的是new File(parent, child)。
+>第二个if条件块则是创建trackerDirectory和this.metaFile了。
+>其实创建trackerDirectory也是为了得到metaFile。
 
-        while(events.size() < n) {
-            Event event = this.readEvent();
-            if(event == null) {
-                break;
-            }
+``` java
+trackerDirectory = new File(trackerDirPath);
+if(!trackerDirectory.isAbsolute()) {
+    trackerDirectory = new File(spoolDirectory, trackerDirPath);
+}
 
-            events.add(event);
-        }
-
-        return events;
-    }
-
-    public void close() throws IOException {
-        this.reader.close();
+if(!trackerDirectory.exists() && !trackerDirectory.mkdir()) {
+    throw new IOException("Unable to mkdir nonexistent meta directory " + trackerDirectory);
+} else if(!trackerDirectory.isDirectory()) {
+    throw new IOException("Specified meta directory is not a directory" + trackerDirectory);
+} else {
+    this.metaFile = new File(trackerDirectory, ".flumespool-main.meta");
+    if(this.metaFile.exists() && this.metaFile.length() == 0L) {
+        this.deleteMetaFile();
     }
 }
-~~~
-
-
+```
