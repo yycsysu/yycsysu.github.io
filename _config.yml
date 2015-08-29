@@ -54,6 +54,8 @@ paginate: 5
 kramdown:
   input: GFM
   extensions:
+    - tables
+    - no_intra_emphasis
     - autolink
     - footnotes
     - smart
