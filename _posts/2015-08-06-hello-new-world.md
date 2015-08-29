@@ -9,11 +9,13 @@ image:
   background: triangular.png
 ---
 
-#这是一个一级标题
-##不要不开心
+# 这是一个一级标题
+## 不要不开心
 
 哈， 哈喽卧德
 
 yuyc
 
 这样子
+
+http://vote.oeeee.com/vote.asp
