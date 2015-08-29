@@ -1,16 +1,16 @@
 ---
 layout: post
-title: SimpleTextLineEventReader
+title: Flume Source Learning (0)
 description: "SimpleTextLineEventReader 的实现原理。超----简单"
 modified: 2015-08-29
 tags: [flume, source code]
 image:
-  feature: abstract-3.jpg
+  feature: abstract-12.jpg
   credit: dargadgetz
   creditlink: http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/
 ---
 
-## Flume Source Learning (0)
+## Flume Source Learning (0)- SimpleTextLineEventReader
 -----
 
 ``` java
@@ -42,7 +42,7 @@ public class SimpleTextLineEventReader implements EventReader {
 	 * 从events.size()判断是否加入n个event
 	 * 同时判断event是不是为null确定文件流是否已到结尾
 	 * 这里重用了前面写的readEvent()
-	*/
+	 */
     public List<Event> readEvents(int n) throws IOException {
         LinkedList events = Lists.newLinkedList();
 
