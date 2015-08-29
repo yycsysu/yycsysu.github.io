@@ -53,6 +53,7 @@ paginate: 5
 
 kramdown:
   input: GFM
+  highlighter: rouge
   extensions:
     - autolink
     - footnotes
