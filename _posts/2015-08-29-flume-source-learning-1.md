@@ -45,7 +45,7 @@ try {
 >其实创建trackerDirectory也是为了得到this.metaFile。
 >最后一个else则是删除旧的this.metaFile
 
-``` java
+~~~ java
 trackerDirectory = new File(trackerDirPath);
 if(!trackerDirectory.isAbsolute()) {
     trackerDirectory = new File(spoolDirectory, trackerDirPath);
@@ -69,4 +69,4 @@ private void deleteMetaFile() throws IOException {
         throw new IOException("Unable to delete old meta file " + this.metaFile);
     }
 }
-```
+~~~
