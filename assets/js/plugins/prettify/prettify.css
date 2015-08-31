@@ -24,6 +24,7 @@ pre.prettyprint, code.prettyprint {
 }
 
 pre.prettyprint {
+	font-family: Consolas;
         width: 95%;
         margin: 1em auto;
         padding: 1em;
