@@ -42,7 +42,8 @@ try {
 >trackerDirPath传自上一级的SpoolDirectorySource类。默认值为 ".flumespool"
 >File.isAbsolute() : 判断路径是否为绝对路径。因为下面使用的是new File(parent, child)。
 >第二个if条件块则是创建trackerDirectory和this.metaFile了。
->其实创建trackerDirectory也是为了得到metaFile。
+>其实创建trackerDirectory也是为了得到this.metaFile。
+>最后一个else则是删除旧的this.metaFile
 
 ``` java
 trackerDirectory = new File(trackerDirPath);
@@ -58,6 +59,14 @@ if(!trackerDirectory.exists() && !trackerDirectory.mkdir()) {
     this.metaFile = new File(trackerDirectory, ".flumespool-main.meta");
     if(this.metaFile.exists() && this.metaFile.length() == 0L) {
         this.deleteMetaFile();
+    }
+}
+
+...
+
+private void deleteMetaFile() throws IOException {
+    if(this.metaFile.exists() && !this.metaFile.delete()) {
+        throw new IOException("Unable to delete old meta file " + this.metaFile);
     }
 }
 ```
