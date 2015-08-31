@@ -41,6 +41,8 @@
 
 <!-- Load Modernizr -->
 <script src="{{ site.url }}/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+<!-- Load J -->
+<script src="{{ site.url }}/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
 
 <!-- Icons -->
 <!-- 16x16 -->
@@ -57,13 +59,6 @@
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ site.url }}/images/watermelon_128px_538776_easyicon.net.png">
 
 <link rel="stylesheet" href="{{ site.url }}/assets/css/prettify.css">
-<script src="{{ site.url }}/assets/js/prettify.js"></script>
-<script type="text/javascript">
-  $(function(){
-    $("pre").addClass("prettyprint");
-    prettyPrint();
-  });
-</script>
 
 {% if page.image.background or site.background %}
 {% capture background %}{% if page.image.background %}{{ page.image.background }}{% else %}{{ site.background }}{% endif %}{% endcapture %}
