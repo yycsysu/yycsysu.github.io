@@ -70,3 +70,14 @@ private void deleteMetaFile() throws IOException {
     }
 }
 ```
+
+``` html
+<link rel="stylesheet" href="/assets/js/plugins/prettify/prettify.css">
+<script src="/assets/js/plugins/prettify/prettify.js"></script>
+<script type="text/javascript">
+  $(function(){
+    $("pre").addClass("prettyprint");
+    prettyPrint();
+  });
+</script>
+```
