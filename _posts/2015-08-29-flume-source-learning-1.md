@@ -21,8 +21,6 @@ image:
 >3. 最后删除canary文件： 检测删除功能。
 >预先检测在Spooling directory内的所有操作能否成功。
 
-{% gist yycsysu/e5727ab9908f8badc1e3 %}
-
 ``` java
 File trackerDirectory;
 try {
