@@ -15,6 +15,7 @@ pre .dec, code .dec { color: #3387CC; } /* decimal - blue */
 
 code {
 	font-family: Consolas;
+  font-size: 12px;
 }
 
 pre.prettyprint, code.prettyprint {
