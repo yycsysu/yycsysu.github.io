@@ -5,15 +5,16 @@ description: "ReliableSpoolingFileEventReader.class"
 modified: 2015-08-29
 tags: [flume, source code]
 image:
-  background: triangular.png
 ---
 
 ## (1) ReliableSpoolingFileEventReader
 -----
 
-{:toc}
-
 #### 初始化
+- [x] @mentions, #refs, [links](), **formatting**, and <del>tags</del> are supported
+- [x] list syntax is required (any unordered or ordered list supported)
+- [x] this is a complete item
+- [ ] this is an incomplete item
 
 >下面代码块使用一个名为canary的文件。canary: 金丝雀。
 >金丝雀曾在矿井中被用于早期预警，这段代码的意义也在于此。
@@ -33,7 +34,7 @@ try {
   if (!canary.delete()) {
     throw new IOException("Unable to delete canary file " + canary);
   }
-  logger.debug("Successfully created and deleted canary file: {}", canary);
+  logger.debug("Successfully created and deleted canary file: {}", canary);P
 } catch (IOException e) {
   throw new FlumeException("Unable to read and modify files" +
       " in the spooling directory: " + spoolDirectory, e);

@@ -5,7 +5,6 @@ description: "SimpleTextLineEventReader 的实现原理。超----简单"
 modified: 2015-08-29
 tags: [flume, source code]
 image:
-  background: triangular.png
 ---
 
 ## SimpleTextLineEventReader
