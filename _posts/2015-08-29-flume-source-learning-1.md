@@ -4,6 +4,8 @@ title: Flume Source Learning (1)
 description: "ReliableSpoolingFileEventReader.class"
 modified: 2015-08-29
 tags: [flume, source code]
+image:
+  background: triangular.png
 ---
 
 ## (1) ReliableSpoolingFileEventReader
