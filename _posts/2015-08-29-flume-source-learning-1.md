@@ -10,12 +10,6 @@ image:
 ## (1) ReliableSpoolingFileEventReader
 -----
 
-#### 初始化
-- [x] @mentions, #refs, [links](), **formatting**, and <del>tags</del> are supported
-- [x] list syntax is required (any unordered or ordered list supported)
-- [x] this is a complete item
-- [ ] this is an incomplete item
-
 >下面代码块使用一个名为canary的文件。canary: 金丝雀。
 >金丝雀曾在矿井中被用于早期预警，这段代码的意义也在于此。
 >1. 创建一个canary文件： 检测创建功能。
