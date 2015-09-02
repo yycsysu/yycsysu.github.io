@@ -22,48 +22,58 @@ image:
 >预先检测在Spooling directory内的所有操作能否成功。
 
 ``` java
-File trackerDirectory;
+// Do a canary test to make sure we have access to spooling directory
 try {
-    trackerDirectory = File.createTempFile("flume-spooldir-perm-check-", ".canary", spoolDirectory);
-    Files.write("testing flume file permissions\n", trackerDirectory, Charsets.UTF_8);
-    List lines = Files.readLines(trackerDirectory, Charsets.UTF_8);
-    Preconditions.checkState(!lines.isEmpty(), "Empty canary file %s", new Object[]{trackerDirectory});
-    if(!trackerDirectory.delete()) {
-        throw new IOException("Unable to delete canary file " + trackerDirectory);
-    }
-
-    logger.debug("Successfully created and deleted canary file: {}", trackerDirectory);
-} catch (IOException var17) {
-    throw new FlumeException("Unable to read and modify files in the spooling directory: " + spoolDirectory, var17);
+  File canary = File.createTempFile("flume-spooldir-perm-check-", ".canary",
+      spoolDirectory);
+  Files.write("testing flume file permissions\n", canary, Charsets.UTF_8);
+  List<String> lines = Files.readLines(canary, Charsets.UTF_8);
+  Preconditions.checkState(!lines.isEmpty(), "Empty canary file %s", canary);
+  if (!canary.delete()) {
+    throw new IOException("Unable to delete canary file " + canary);
+  }
+  logger.debug("Successfully created and deleted canary file: {}", canary);
+} catch (IOException e) {
+  throw new FlumeException("Unable to read and modify files" +
+      " in the spooling directory: " + spoolDirectory, e);
 }
 ```
 
 >这块代码位于上面那块之下。
 >trackerDirPath传自上一级的SpoolDirectorySource类。默认值为 ".flumespool"
->File.isAbsolute() : 判断路径是否为绝对路径。因为下面使用的是new File(parent, child)。
->第二个if条件块则是创建trackerDirectory和this.metaFile了。
->其实创建trackerDirectory也是为了得到this.metaFile。
->最后一个else则是删除旧的this.metaFile
+if条件块一：File.isAbsolute() : 判断路径是否为绝对路径。因为下面使用的是new File(parent, child)。
+if条件块二：若trackerDirectory不存在则自动创建该目录。
+if条件块三：确定当前trackerDirectory为目录。
+if条件块四：删除旧的this.metaFile
 
 ``` java
-trackerDirectory = new File(trackerDirPath);
-if(!trackerDirectory.isAbsolute()) {
-    trackerDirectory = new File(spoolDirectory, trackerDirPath);
+File trackerDirectory = new File(trackerDirPath);
+
+// if relative path, treat as relative to spool directory
+if (!trackerDirectory.isAbsolute()) {
+  trackerDirectory = new File(spoolDirectory, trackerDirPath);
 }
 
-if(!trackerDirectory.exists() && !trackerDirectory.mkdir()) {
-    throw new IOException("Unable to mkdir nonexistent meta directory " + trackerDirectory);
-} else if(!trackerDirectory.isDirectory()) {
-    throw new IOException("Specified meta directory is not a directory" + trackerDirectory);
-} else {
-    this.metaFile = new File(trackerDirectory, ".flumespool-main.meta");
-    if(this.metaFile.exists() && this.metaFile.length() == 0L) {
-        this.deleteMetaFile();
-    }
+// ensure that meta directory exists
+if (!trackerDirectory.exists()) {
+  if (!trackerDirectory.mkdir()) {
+    throw new IOException("Unable to mkdir nonexistent meta directory " +
+        trackerDirectory);
+  }
 }
 
-...
+// ensure that the meta directory is a directory
+if (!trackerDirectory.isDirectory()) {
+  throw new IOException("Specified meta directory is not a directory" +
+      trackerDirectory);
+}
 
+this.metaFile = new File(trackerDirectory, metaFileName);
+if(metaFile.exists() && metaFile.length() == 0) {
+  deleteMetaFile();
+}
+```
+``` java
 private void deleteMetaFile() throws IOException {
     if(this.metaFile.exists() && !this.metaFile.delete()) {
         throw new IOException("Unable to delete old meta file " + this.metaFile);
