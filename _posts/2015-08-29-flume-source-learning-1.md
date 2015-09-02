@@ -11,9 +11,9 @@ image:
 ## (1) ReliableSpoolingFileEventReader
 -----
 
-[TOC]
+{:toc}
 
-### 初始化
+#### 初始化
 
 >下面代码块使用一个名为canary的文件。canary: 金丝雀。
 >金丝雀曾在矿井中被用于早期预警，这段代码的意义也在于此。
