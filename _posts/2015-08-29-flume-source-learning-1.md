@@ -4,10 +4,6 @@ title: Flume Source Learning (1)
 description: "ReliableSpoolingFileEventReader.class"
 modified: 2015-08-29
 tags: [flume, source code]
-image:
-  feature: abstract-12.jpg
-  credit: dargadgetz
-  creditlink: http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/
 ---
 
 ## (1) ReliableSpoolingFileEventReader
@@ -41,7 +37,8 @@ try {
 
 >这块代码位于上面那块之下。
 >trackerDirPath传自上一级的SpoolDirectorySource类。默认值为 ".flumespool"
-if条件块一：File.isAbsolute() : 判断路径是否为绝对路径。因为下面使用的是new File(parent, child)。
+if条件块一：File.isAbsolute() : 判断路径是否为绝对路径。
+            因为下面使用的是new File(parent, child)。
 if条件块二：若trackerDirectory不存在则自动创建该目录。
 if条件块三：确定当前trackerDirectory为目录。
 if条件块四：删除旧的this.metaFile
