@@ -138,7 +138,7 @@ Kerberoso为一种计算机网络认证协议，它允许某实体在非安全�
 >这里使用的是JDK1.7，对应的JCE下载地址[[ http://www.oracle.com/technetwork/java/embedded/embedded-se/downloads/jce-7-download-432124.html | Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy Files for JDK/JRE 7 ]] 。下载完后将zip包内的两个文件解压到 **$JAVA_HOME/jre/lib/security** 即可。
 
 
-####4) 修改 Kerberos Client 配置文件（krb5.conf）：
+#### 4) 修改 Kerberos Client 配置文件（krb5.conf）：
 
 
 ```
