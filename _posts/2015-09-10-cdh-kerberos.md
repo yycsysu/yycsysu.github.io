@@ -7,10 +7,8 @@ tags: [cdh, hadoop, derberos]
 image:
 ---
 
-## (1) ReliableSpoolingFileEventReader
------
-
 # 简介
+-----
 
 Kerberoso为一种计算机网络认证协议，它允许某实体在非安全网络环境下通信，向另一个实体以一种安全的方式证明自己的身份。这里指由麻省理工实现此协议，并发布的一套免费软件。Kerberos协议基于对称密码学。Kerberos工作在用于证明用户身份的"票据(tickets)"的基础上。KDC持有一个密钥(principals)数据库；每个网络实体——无论是客户还是服务器——共享一套只有他自己和KDC知道的密钥。密钥的内容用于证明实体的身份。对于两个实体间的通信，KDC产生一个会话密钥，用来加密他们之间的交互信息。
 
@@ -19,6 +17,7 @@ Kerberoso为一种计算机网络认证协议，它允许某实体在非安全�
 
 
 # 系统环境
+-----
 
 
 * 系统：//CentOS 6.3 x64// X 2
@@ -43,6 +42,7 @@ Kerberoso为一种计算机网络认证协议，它允许某实体在非安全�
 
 
 # 前置条件
+-----
 
 
 ### 1. 安装Cloudera Management和CDH：
@@ -55,23 +55,21 @@ Kerberoso为一种计算机网络认证协议，它允许某实体在非安全�
 
 >以下操作使用root权限进行。
 
-####1) 安装 Kerberos Server:
+#### 1) 安装 Kerberos Server:
 
 在hadoop002上安装Kerberos Server:
 
 ```
-
 [root@hadoop002 ~]# yum install krb5-server -y
 
 ```
 
 
-####2) 安装 Kerberos Client:
+#### 2) 安装 Kerberos Client:
 
 在hadoop001和hadoop002上安装Kerberos Client:
 
 ```
-
 [root@hadoop001 ~]# yum install krb5-workstation krb5-libs -y
 
 [root@hadoop002 ~]# yum install krb5-workstation krb5-libs -y
@@ -79,18 +77,16 @@ Kerberoso为一种计算机网络认证协议，它允许某实体在非安全�
 ```
 
 
-####3) 编辑 Kerberos Server 配置文件（kdc.conf）：
+#### 3) 编辑 Kerberos Server 配置文件（kdc.conf）：
 
 >以下仅列出需要的配置，详细配置参考：[[ http://web.mit.edu/~kerberos/krb5-devel/doc/admin/conf_files/kdc_conf.html | kdc.conf ]]：
 
 ```
-
 [root@hadoop002 ~]# vim /var/kerberos/krb5kdc/kdc.conf
 
 ```
 
 ```
-
 [kdcdefaults]
 
  kdc_ports = 88
@@ -146,7 +142,6 @@ Kerberoso为一种计算机网络认证协议，它允许某实体在非安全�
 
 
 ```
-
 [root@hadoop002 ~]# vim /etc/krb5.conf
 
 [logging]
@@ -196,7 +191,6 @@ Kerberoso为一种计算机网络认证协议，它允许某实体在非安全�
 
 
 ```
-
 说明：
 
 * 基本上是默认配置，修改一些hostname和realms配置即可。
@@ -206,11 +200,10 @@ Kerberoso为一种计算机网络认证协议，它允许某实体在非安全�
 * **udp_preference_limit = 1** ： 据说可以避免一个Hadoop的错误。
 
 
-####5) 编辑 访问控制列表文件 （kadm5.acl）
+#### 5) 编辑 访问控制列表文件 （kadm5.acl）
 
 
 ```
-
 该文件包含所有获许管理 KDC 的主体名称。
 
 [root@hadoop002 ~]# cat /var/kerberos/krb5kdc/kadm5.acl
@@ -220,23 +213,21 @@ Kerberoso为一种计算机网络认证协议，它允许某实体在非安全�
 ```
 
 
-####6) 同步配置文件
+#### 6) 同步配置文件
 
 将 hadoop002 中的 /etc/krb5.conf 拷贝到其他主机（即hadoop001）
 
 ```
-
 [root@hadoop001 ~]# scp hadoop002:/etc/krb5.conf /etc/krb5.conf
 
 ```
 
 
-####7) 创建数据库
+#### 7) 创建数据库
 
 该数据库用于存储principals。其中 **-r** 指定对应 realm。用 **-d** 可指定数据库名字，默认为principal。
 
 ```
-
 [root@hadoop002 ~]#  kdb5_util create -r CDP.COM -s
 
 ```
@@ -244,12 +235,11 @@ Kerberoso为一种计算机网络认证协议，它允许某实体在非安全�
 >如果提示数据库已经存在，则要把 /var/kerberos/krb5kdc/ 目录下的 principal(数据库名称) 的相关文件都干掉。
 
 
-####8) 启动服务
+#### 8) 启动服务
 
 在 hadoop002 节点上运行：
 
 ```
-
 [root@hadoop002 ~]# chkconfig --level 35 krb5kdc on
 
 [root@hadoop002 ~]# chkconfig --level 35 kadmin on
@@ -261,7 +251,7 @@ Kerberoso为一种计算机网络认证协议，它允许某实体在非安全�
 ```
 
 
-####9) 创建 kerberos 管理员
+#### 9) 创建 kerberos 管理员
 
 关于 kerberos 的管理，可以使用 kadmin.local 或 kadmin，区别如下：
 
@@ -269,7 +259,6 @@ Kerberoso为一种计算机网络认证协议，它允许某实体在非安全�
 * 本地机器（即kerberos server所在主机）使用 kadmin.local。不需要密码。
 
 ```
-
 [root@hadoop002 ~]# kadmin.local
 
 Authenticating as principal root/admin@CDP.COM with password.
@@ -281,7 +270,6 @@ kadmin:
 * 远端机器（即kerberos client）使用 kadmin 远程连接kerberos server，需要有管理员权限的principal。需要认证。
 
 ```
-
 [root@hadoop001 ~]# kadmin
 
 Authenticating as principal cloudera-scm/admin@CDP.COM with password.
@@ -295,7 +283,6 @@ kadmin:
 所以这里我们需要创建一个远程管理员用以远端登陆。同时Cloudera Manager也会用到。
 
 ```
-
 [root@hadoop001 ~]# kadmin.local -q "addprinc cloudera-scm/admin"
 
 系统会提示输入密码，密码不能为空。
@@ -303,12 +290,11 @@ kadmin:
 ```
 
 
-####10) Kerberos 相关操作
+#### 10) Kerberos 相关操作
 
 至此kerberos服务搭建完成，可以用以下几个指令测试是否搭建成功：
 
 ```
-
 #查看principals
 
 kadmin.local: list_principals
@@ -342,7 +328,6 @@ Make sure that you have removed this principal from all ACLs before reusing.
 ```
 
 ```
-
 #获得ticket
 
 [root@hadoop002 ~]# kinit test
@@ -378,6 +363,7 @@ klist: No credentials cache found (ticket cache FILE:/tmp/krb5cc_0)
 
 
 # 在Cloudera Manager上启动Kerberos
+-----
 
 
 >Important:
@@ -482,7 +468,6 @@ klist: No credentials cache found (ticket cache FILE:/tmp/krb5cc_0)
 认证当前用户并获得ticket，principal格式为: username@YOUR-REALM.COM（需提前在KDC添加principal）
 
 ```
-
 [jinfuzi@hadoop001 ~]$ kinit
 
 Password for jinfuzi@CDP.COM:
@@ -510,7 +495,6 @@ Valid starting     Expires            Service principal
 结果
 
 ```
-
 [jinfuzi@hadoop001 ~]$ hadoop jar /DATA/cloudera/parcels/CDH-5.4.4-1.cdh5.4.4.p0.4/jars/hadoop-examples.jar pi 10 10000
 
 Number of Maps  = 10
@@ -530,7 +514,6 @@ Estimated value of Pi is 3.14120000000000000000
 
 
 ```
-
 [jinfuzi@hadoop001 ~]$ beeline
 
 Beeline version 1.1.0-cdh5.4.4 by Apache Hive
