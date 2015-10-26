@@ -115,6 +115,7 @@ val messages = KafkaUtils.createDirectStream[String, String, StringDecoder, Stri
 #### 数据分析
 
 这里为word count
+
 ```
 val lines = messages.map(_._2)
 val words = lines.flatMap(_.split(" "))
