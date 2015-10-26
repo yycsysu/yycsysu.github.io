@@ -51,18 +51,23 @@ image:
 官方示例可查看 [git_KafkaWordCount](https://github.com/apache/spark/blob/master/examples/src/main/scala/org/apache/spark/examples/streaming/DirectKafkaWordCount.scala)
 
 运行以下命令可以检测spark streming和kafka是否能集成使用
+
 ```
 ./bin/run-example streaming.DirectKafkaWordCount <kafka broker list[host:port]> <topic>
 例如：
 [jinfuzi@hadoop002 kafka]$ ./bin/run-example streaming.DirectKafkaWordCount localhost:9092,localhost:9093 kafka-test
 ```
+
 打开kafka产生端输入数据
+
 ```
 [jinfuzi@hadoop002 kafka]$ bin/kafka-console-producer.sh --broker-list localhost:9092 --topic kafka-test
 hello world
 how are you
 ```
+
 可以看见spark streaming输出
+
 ```
 [jinfuzi@hadoop002 spark-1.4.1-bin-hadoop2.6]$ ./bin/run-example streaming.DirectKafkaWordCount localhost:9092,localhost:9093 kafka-test
 Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
@@ -85,6 +90,7 @@ Time: 1445591928000 ms
 (are,1)
 (you,1)
 ```
+
 说明搭建好的环境可以正常运行
 
 # 代码编写
