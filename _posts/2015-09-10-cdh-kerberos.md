@@ -3,7 +3,7 @@ layout: post
 title: 通过Cloudera Management为CDH群集中的服务配置Kerberos认证
 description: ""
 modified: 2015-09-10
-tags: [cdh, hadoop, derberos]
+tags: [cdh, hadoop, kerberos]
 image:
 ---
 
