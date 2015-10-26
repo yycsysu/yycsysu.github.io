@@ -11,6 +11,7 @@ image:
 {% capture images %}
 	/images/2015-10-26/kafka-with-spark-streaming-1.png
 {% endcapture %}
+{% include gallery images=images caption="" cols=3 %}
 
 实时数据输入基本上来自Flume的数据采集，通过对应topic存入kafka之中，Spark streaming实时消费对应topic的内容并进行数据分析。分析结果的处理分很多种情况，可以存入kafka，写入HDFS或本地文件以供后续使用，也可以直接将结果展示到页面上，或发送邮件，短信通知。
 

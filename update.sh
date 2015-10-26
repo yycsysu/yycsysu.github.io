@@ -1,3 +1,3 @@
 git add -A
-git commit -m "update"
+git commit -m "post"
 git push origin
