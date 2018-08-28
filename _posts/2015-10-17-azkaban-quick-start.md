@@ -168,9 +168,9 @@ mail.password=
 type=command
 command=echo "Hello "
 command.1= sh hello.sh
-success.emails=persian.huang@jinfuzi.com,daniel.deng@jinfuzi.com
-failure.emails=persian.huang@jinfuzi.com,daniel.deng@jinfuzi.com
-notify.emails=persian.huang@jinfuzi.com,daniel.deng@jinfuzi.com
+success.emails=
+failure.emails=
+notify.emails=
 ```
 
 另一种是在执行Job的时候重写邮箱列表，例如：
