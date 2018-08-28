@@ -47,7 +47,7 @@ Kerberoso为一种计算机网络认证协议，它允许某实体在非安全�
 
 ### 1. 安装Cloudera Management和CDH：
 
-可参考[[ http://phabricator.jinfuzi.com/w/java/cdp/base/installenv/ | 通过Cloudera Management安装CDH中的Hadoop/Hive/Spark ]]
+可参考 通过Cloudera Management安装CDH中的Hadoop/Hive/Spark
 
 
 
@@ -468,15 +468,15 @@ klist: No credentials cache found (ticket cache FILE:/tmp/krb5cc_0)
 认证当前用户并获得ticket，principal格式为: username@YOUR-REALM.COM（需提前在KDC添加principal）
 
 ```
-[jinfuzi@hadoop001 ~]$ kinit
+[localhost@hadoop001 ~]$ kinit
 
-Password for jinfuzi@CDP.COM:
+Password for localhost@CDP.COM:
 
-[jinfuzi@hadoop001 ~]$ klist
+[localhost@hadoop001 ~]$ klist
 
 Ticket cache: FILE:/tmp/krb5cc_500
 
-Default principal: jinfuzi@CDP.COM
+Default principal: localhost@CDP.COM
 
 
 Valid starting     Expires            Service principal
@@ -495,7 +495,7 @@ Valid starting     Expires            Service principal
 结果
 
 ```
-[jinfuzi@hadoop001 ~]$ hadoop jar /DATA/cloudera/parcels/CDH-5.4.4-1.cdh5.4.4.p0.4/jars/hadoop-examples.jar pi 10 10000
+[localhost@hadoop001 ~]$ hadoop jar /DATA/cloudera/parcels/CDH-5.4.4-1.cdh5.4.4.p0.4/jars/hadoop-examples.jar pi 10 10000
 
 Number of Maps  = 10
 
@@ -514,7 +514,7 @@ Estimated value of Pi is 3.14120000000000000000
 
 
 ```
-[jinfuzi@hadoop001 ~]$ beeline
+[localhost@hadoop001 ~]$ beeline
 
 Beeline version 1.1.0-cdh5.4.4 by Apache Hive
 
