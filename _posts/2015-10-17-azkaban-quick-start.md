@@ -188,7 +188,7 @@ hello.job
 type=command
 command=echo "Hello "
 command.1= sh hello.sh
-failure.emails=persian.huang@jinfuzi.com,daniel.deng@jinfuzi.com
+failure.emails=
 retries=3
 retry.backoff=1000
 ```
