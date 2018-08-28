@@ -55,13 +55,13 @@ image:
 ```
 ./bin/run-example streaming.DirectKafkaWordCount <kafka broker list[host:port]> <topic>
 例如：
-[jinfuzi@hadoop002 kafka]$ ./bin/run-example streaming.DirectKafkaWordCount localhost:9092,localhost:9093 kafka-test
+[localhost@hadoop002 kafka]$ ./bin/run-example streaming.DirectKafkaWordCount localhost:9092,localhost:9093 kafka-test
 ```
 
 打开kafka产生端输入数据
 
 ```
-[jinfuzi@hadoop002 kafka]$ bin/kafka-console-producer.sh --broker-list localhost:9092 --topic kafka-test
+[localhost@hadoop002 kafka]$ bin/kafka-console-producer.sh --broker-list localhost:9092 --topic kafka-test
 hello world
 how are you
 ```
@@ -69,7 +69,7 @@ how are you
 可以看见spark streaming输出
 
 ```
-[jinfuzi@hadoop002 spark-1.4.1-bin-hadoop2.6]$ ./bin/run-example streaming.DirectKafkaWordCount localhost:9092,localhost:9093 kafka-test
+[localhost@hadoop002 spark-1.4.1-bin-hadoop2.6]$ ./bin/run-example streaming.DirectKafkaWordCount localhost:9092,localhost:9093 kafka-test
 Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
 15/10/23 17:17:35 INFO StreamingExamples: Setting log level to [WARN] for streaming example. To override add a custom log4j.properties to the classpath.
 15/10/23 17:17:36 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
